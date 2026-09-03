@@ -1,7 +1,29 @@
 import anthropic
 import os
+import chromadb
+from datetime import datetime
+from dotenv import load_dotenv
+
+load_dotenv()
 
 client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
+chroma_client = chromadb.Client()
+memory_collection = chroma_client.create_collection(name="nexus_memory")
+
+def save_memory(question: str, answer: str):
+    memory_collection.add(
+        documents=[f"Q: {question} A: {answer}"],
+        ids=[datetime.now().isoformat()]
+    )
+
+def get_memory(question: str) -> str:
+    results = memory_collection.query(
+        query_texts=[question],
+        n_results=2
+    )
+    if results["documents"][0]:
+        return "\n".join(results["documents"][0])
+    return ""
 
 def planner_agent(question: str) -> str:
     response = client.messages.create(

@@ -2,7 +2,8 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
 import os
-
+from agents import planner_agent, researcher_agent, reasoner_agent, critic_agent, save_memory, get_memory
+from pydantic import BaseModel
 load_dotenv()
 
 app = FastAPI()
@@ -17,8 +18,8 @@ app.add_middleware(
 @app.get("/")
 def read_root():
     return {"status": "NEXUS is alive"}
-from agents import planner_agent, researcher_agent, reasoner_agent, critic_agent
-from pydantic import BaseModel
+
+
 
 class Query(BaseModel):
     question: str
@@ -27,13 +28,16 @@ class Query(BaseModel):
 async def ask_nexus(query: Query):
     question = query.question
     
+    past_memory = get_memory(question)
     plan = planner_agent(question)
     research = researcher_agent(plan)
     answer = reasoner_agent(question, research)
     final = critic_agent(question, answer)
+    save_memory(question, final)
     
     return {
         "question": question,
+        "memory": past_memory,
         "plan": plan,
         "research": research,
         "answer": answer,
