@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@500;700&display=swap');
+
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+
+body{background:#07070f;color:#e8e8f0;font-family:'Inter',sans-serif;min-height:100vh;}
+
+.nx-root{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;overflow-x:hidden;}
+
+.nx-grid{position:fixed;inset:0;background-image:linear-gradient(rgba(99,102,241,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(99,102,241,.05) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;}
+
+.nx-orb{position:fixed;top:-150px;left:50%;transform:translateX(-50%);width:700px;height:500px;background:radial-gradient(ellipse,rgba(99,102,241,.14) 0%,rgba(168,85,247,.05) 40%,transparent 70%);pointer-events:none;z-index:0;}
+
+.nx-inner{position:relative;z-index:1;width:100%;max-width:700px;padding:56px 24px 60px;}
+
+.nx-eyebrow{text-align:center;font-size:10px;font-weight:500;letter-spacing:.22em;color:#6366f1;text-transform:uppercase;margin-bottom:18px;display:flex;align-items:center;justify-content:center;gap:10px;}
+.nx-eyebrow::before,.nx-eyebrow::after{content:'';flex:1;max-width:60px;height:1px;}
+.nx-eyebrow::before{background:linear-gradient(90deg,transparent,rgba(99,102,241,.4));}
+.nx-eyebrow::after{background:linear-gradient(90deg,rgba(99,102,241,.4),transparent);}
+
+.nx-title{font-family:'Space Grotesk',sans-serif;font-size:clamp(64px,12vw,110px);font-weight:700;letter-spacing:-.04em;line-height:1;text-align:center;background:linear-gradient(140deg,#fff 0%,#c7c7ff 45%,#a855f7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:12px;}
+
+.nx-sub{text-align:center;color:#50507a;font-size:13px;margin-bottom:36px;}
+
+.nx-stats{display:flex;justify-content:center;gap:40px;margin-bottom:36px;padding:16px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);border-radius:12px;}
+.nx-stat{text-align:center;}
+.nx-stat-val{font-size:20px;font-weight:600;color:#e8e8f0;font-family:'Space Grotesk',sans-serif;}
+.nx-stat-lbl{font-size:9px;color:#35355a;letter-spacing:.12em;text-transform:uppercase;margin-top:3px;}
+
+.nx-box{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:14px;overflow:hidden;margin-bottom:12px;transition:border-color .2s;}
+.nx-box:focus-within{border-color:rgba(99,102,241,.45);}
+
+.nx-textarea{width:100%;background:transparent;border:none;outline:none;color:#e8e8f0;font-family:'Inter',sans-serif;font-size:14px;line-height:1.75;padding:18px 18px 10px;resize:none;}
+.nx-textarea::placeholder{color:#2a2a45;}
+
+.nx-toolbar{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-top:1px solid rgba(255,255,255,.05);}
+.nx-hint{font-size:11px;color:#2a2a45;}
+
+.nx-btn{background:linear-gradient(135deg,#6366f1,#a855f7);border:none;border-radius:8px;color:#fff;font-family:'Inter',sans-serif;font-size:12px;font-weight:600;padding:9px 20px;cursor:pointer;letter-spacing:.04em;transition:opacity .15s,transform .1s;}
+.nx-btn:hover:not(:disabled){opacity:.88;transform:translateY(-1px);}
+.nx-btn:disabled{opacity:.35;cursor:not-allowed;}
+
+.nx-thinking{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:14px;padding:20px;margin-bottom:12px;}
+
+.nx-agent-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px;}
+
+.nx-agent{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:14px 10px;text-align:center;transition:all .3s;}
+.nx-agent.active{border-color:rgba(99,102,241,.5);background:rgba(99,102,241,.07);}
+.nx-agent.done{border-color:rgba(34,197,94,.3);background:rgba(34,197,94,.04);}
+
+.nx-agent-icon{font-size:20px;margin-bottom:8px;}
+.nx-agent-name{font-size:10px;font-weight:500;color:#4a4a70;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px;}
+.nx-agent.active .nx-agent-name{color:#818cf8;}
+.nx-agent.done .nx-agent-name{color:#4ade80;}
+
+.nx-agent-status{font-size:10px;color:#2a2a45;display:flex;align-items:center;justify-content:center;gap:4px;}
+.nx-agent.active .nx-agent-status{color:#818cf8;}
+.nx-agent.done .nx-agent-status{color:#4ade80;}
+
+.nx-pulse{display:inline-block;width:5px;height:5px;background:currentColor;border-radius:50%;animation:pulse 1s ease infinite;flex-shrink:0;}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.2}}
+
+.nx-timer{text-align:center;font-size:11px;color:#35355a;display:flex;align-items:center;justify-content:center;gap:6px;font-variant-numeric:tabular-nums;}
+
+.nx-results{display:flex;flex-direction:column;gap:10px;}
+.nx-results-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+.nx-results-lbl{font-size:10px;letter-spacing:.15em;color:#35355a;text-transform:uppercase;}
+.nx-results-time{font-size:11px;color:#4ade80;font-variant-numeric:tabular-nums;}
+
+.nx-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:14px;overflow:hidden;animation:slideIn .45s ease both;}
+.nx-card:last-child{border-color:rgba(168,85,247,.25);}
+.nx-card:nth-child(1){animation-delay:.0s}
+.nx-card:nth-child(2){animation-delay:.12s}
+.nx-card:nth-child(3){animation-delay:.24s}
+.nx-card:nth-child(4){animation-delay:.36s}
+@keyframes slideIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+
+.nx-card-head{display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid rgba(255,255,255,.05);}
+.nx-card-icon{font-size:14px;}
+.nx-card-title{font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:500;color:#e8e8f0;flex:1;letter-spacing:.06em;text-transform:uppercase;}
+.nx-badge{font-size:9px;font-weight:600;letter-spacing:.1em;padding:3px 8px;border-radius:4px;text-transform:uppercase;background:rgba(99,102,241,.1);color:#818cf8;}
+.nx-card:last-child .nx-badge{background:rgba(168,85,247,.1);color:#c084fc;}
+
+.nx-card-body{padding:16px;font-size:13px;line-height:1.8;color:#6060a0;max-height:220px;overflow-y:auto;white-space:pre-wrap;}
+.nx-card-body::-webkit-scrollbar{width:3px;}
+.nx-card-body::-webkit-scrollbar-thumb{background:rgba(99,102,241,.2);border-radius:2px;}
+
+.nx-footer{text-align:center;font-size:10px;color:#1e1e30;letter-spacing:.1em;margin-top:32px;}

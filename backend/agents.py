@@ -48,16 +48,18 @@ from tavily import TavilyClient
 tavily = TavilyClient(api_key=os.getenv("TAVILY_API_KEY"))
 
 def researcher_agent(sub_questions: str) -> str:
-    search_results = tavily.search(
-        query=sub_questions,
-        max_results=3
-    )
-    
-    results_text = ""
-    for result in search_results["results"]:
-        results_text += f"Source: {result['url']}\n"
-        results_text += f"Content: {result['content']}\n\n"
-    
+    try:
+        search_results = tavily.search(
+            query=sub_questions,
+            max_results=3
+        )
+        results_text = ""
+        for result in search_results["results"]:
+            results_text += f"Source: {result['url']}\n"
+            results_text += f"Content: {result['content']}\n\n"
+    except Exception:
+        results_text = "Web search unavailable. Using Claude's knowledge directly."
+
     response = client.messages.create(
         model="claude-sonnet-4-6",
         max_tokens=1000,
