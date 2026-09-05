@@ -46,10 +46,17 @@ export default function App() {
       setQueries(q => q+1);
       setTotalTime(tt => tt+t);
       setResult(data);
-    } catch(e) {
-      clearTimeout(t1); clearTimeout(t2); clearTimeout(t3);
-      clearInterval(timer);
-    }
+ } catch(e) {
+    clearTimeout(t1); clearTimeout(t2); clearTimeout(t3);
+    clearInterval(timer);
+    setStages([0,0,0,0]);
+    setResult({
+        plan: "Backend is currently offline. Clone the repo and run locally to see NEXUS in action.",
+        research: "See GitHub for setup instructions: github.com/sharmaakarshit60-maker/Nexus",
+        answer: "NEXUS requires the Python backend running locally with your API keys.",
+        final: "Visit the GitHub repo for full setup and demo walkthrough."
+    });
+}
     setLoading(false);
   };
 
